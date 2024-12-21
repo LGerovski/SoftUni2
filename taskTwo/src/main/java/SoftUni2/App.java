@@ -1,6 +1,8 @@
 package SoftUni2;
 
+import javax.management.relation.Role;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,8 +14,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        List<String> royalGuards = new ArrayList<>();
-        List<String> footmans = new ArrayList<>();
+        List<RoyalGuard> royalGuards = new ArrayList<>();
+        List<Footman> footmans = new ArrayList<>();
         String kingsName;
 
         Scanner scanner =new Scanner(System.in);
@@ -23,13 +25,14 @@ public class App
         String royalGuardsLine = scanner.nextLine();
         String[] royalGuradsArr = royalGuardsLine.split(" ");
         for (String royalGuard : royalGuradsArr) {
-            royalGuards.add(royalGuard);
+            royalGuards.add(new RoyalGuard(royalGuard));
         }
 
         String footmansLine = scanner.nextLine();
         String[] footmansArr = footmansLine.split(" ");
+        //footmans.addAll(Arrays.asList(footmansArr));
         for (String footman : footmansArr) {
-            footmans.add(footman);
+            footmans.add(new Footman(footman));
         }
 
         String command;
@@ -37,26 +40,35 @@ public class App
         while (!command.equals("end")){
             if (command.equals("Attack King")){
                 System.out.printf("King %s is under attack!\n",kingsName);
-                for (String royalGuard : royalGuards) {
-                    System.out.printf("Royal Guard %s is defending!\n", royalGuard);
+                for (RoyalGuard royalGuard : royalGuards) {
+                    royalGuard.print();
                 }
-                for (String footman :footmans) {
-                    System.out.printf("Footman %s is panicking!\n",footman);
+                for (Footman footman :footmans) {
+                    footman.print();
                 }
                 command = scanner.nextLine();
             }else {
                 String name = command.split(" ")[1];
-                if (royalGuards.contains(name)){
-                    royalGuards.remove(name);
-                    System.out.println("removed royalGuard " + name);
-                }else {
-                    footmans.remove(name);
-                    System.out.println("removed footman " + name);
+                for (Footman footman : footmans) {
+                    if (footman.getName().equals(name)){
+                        footman.kill();
+                    }
                 }
+                for (RoyalGuard royalguard : royalGuards) {
+                    if (royalguard.getName().equals(name)){
+                        royalguard.kill();
+                    }
+                }
+                    //да се пробва с лабда
                 command = scanner.nextLine();
             }
         }
     }
+    // Commint
+    // Two interfaces - respond and kill
+    // Create an abstract class (fields and methods for Footman and royalGuard). Implement both - respond and kill
+    // Footman and royalGuard should extend this class
+
     /*
     създаване на списък за футман и роялгардс
     променлива за име на краля

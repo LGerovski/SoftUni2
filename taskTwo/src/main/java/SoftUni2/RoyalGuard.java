@@ -1,10 +1,25 @@
 package SoftUni2;
 
-public class RoyalGuard implements CommandListener{
-    private String name = "Gosho";
+public class RoyalGuard {
+    private String name;
+    private boolean alive;
 
-    @Override
-    public void handleCommand(CommandEvent command) {
-        System.out.printf("Royal Guard %s is defending!\n", command.getCommand());
+    public RoyalGuard(String name){
+        this.name=name;
+        this.alive=true;
+    }
+    void print(){
+        if (this.alive){
+            System.out.printf("Royal Guard %s is defending!\n", name);
+        }
+    }
+    public void kill(){
+        if (!this.alive){
+            System.out.println("removed royalGuard " + this.name);
+        }
+        this.alive=false;
+    }
+    public String getName(){
+        return this.name;
     }
 }
