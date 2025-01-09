@@ -14,49 +14,42 @@ public class App
 {
     public static void main( String[] args )
     {
-        List<RoyalGuard> royalGuards = new ArrayList<>();
-        List<Footman> footmans = new ArrayList<>();
-        String kingsName;
-
+        //List<RoyalGuard> royalGuards = new ArrayList<>();
+        //List<Footman> footmans = new ArrayList<>();
+        //String kingsName;
+        List<Liege> lieges = new ArrayList<>();
         Scanner scanner =new Scanner(System.in);
 
-        kingsName = scanner.nextLine();
+        String kingsName = scanner.nextLine();
+        King king = new King(kingsName);
 
         String royalGuardsLine = scanner.nextLine();
         String[] royalGuradsArr = royalGuardsLine.split(" ");
         for (String royalGuard : royalGuradsArr) {
-            royalGuards.add(new RoyalGuard(royalGuard));
+            lieges.add(new RoyalGuard(royalGuard));
         }
 
         String footmansLine = scanner.nextLine();
         String[] footmansArr = footmansLine.split(" ");
         //footmans.addAll(Arrays.asList(footmansArr));
         for (String footman : footmansArr) {
-            footmans.add(new Footman(footman));
+            lieges.add(new Footman(footman));
         }
 
         String command;
         command = scanner.nextLine();
         while (!command.equals("end")){
             if (command.equals("Attack King")){
-                System.out.printf("King %s is under attack!\n",kingsName);
-                for (RoyalGuard royalGuard : royalGuards) {
-                    royalGuard.print();
-                }
-                for (Footman footman :footmans) {
-                    footman.print();
+                king.print();
+                for (Liege liege :lieges ) {
+                    liege.print();
                 }
                 command = scanner.nextLine();
             }else {
                 String name = command.split(" ")[1];
-                for (Footman footman : footmans) {
-                    if (footman.getName().equals(name)){
-                        footman.kill();
-                    }
-                }
-                for (RoyalGuard royalguard : royalGuards) {
-                    if (royalguard.getName().equals(name)){
-                        royalguard.kill();
+                for (Liege liege :lieges) {
+                    if (liege.getName().equals(name)){
+                        liege.kill();
                     }
                 }
                     //да се пробва с лабда

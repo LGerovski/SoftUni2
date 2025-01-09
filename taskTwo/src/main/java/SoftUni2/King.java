@@ -1,11 +1,12 @@
 package SoftUni2;
 
-public class King {
+public class King implements Responsive {
     private String name;
     public King(String name){
         this.name=name;
     }
-    public String getName(){
-        return this.name;
+    @Override
+    public void print() {
+        System.out.printf("King %s is under attack!\n",this.name);
     }
 }
