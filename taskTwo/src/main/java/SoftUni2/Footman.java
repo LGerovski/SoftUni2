@@ -1,9 +1,10 @@
 package SoftUni2;
 
-public class Footman {
+public class Footman extends Liege {
     private String name;
     private boolean alive;
 
+    private String statement ="Footman " + this.name + " is panicking!\n";
     public Footman(String name){
         this.name=name;
         this.alive = true;
