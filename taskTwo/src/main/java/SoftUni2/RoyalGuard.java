@@ -23,4 +23,9 @@ public class RoyalGuard extends Liege{
             System.out.printf("Royal Guard %s is defending!\n", name);
         }
     }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
 }

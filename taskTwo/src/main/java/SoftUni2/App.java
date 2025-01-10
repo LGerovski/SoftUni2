@@ -38,7 +38,7 @@ public class App
 
         String command;
         command = scanner.nextLine();
-        while (!command.equals("end")){
+        while (!command.equals("End")){
             if (command.equals("Attack King")){
                 king.print();
                 for (Liege liege :lieges ) {

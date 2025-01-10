@@ -21,4 +21,9 @@ public class Footman extends Liege {
         }
         this.alive = false;
     }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
 }
